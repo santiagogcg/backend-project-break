@@ -152,7 +152,7 @@ function showProductByIdAdmin(product) {
 
 
 
-function formProduct(url) {
+function formProduct(url, name, description, image, category, size, price) {
 
     return (
         `<!DOCTYPE html>
@@ -165,38 +165,44 @@ function formProduct(url) {
     </head>
 
     <form action=${url} method ="post">
-    <label for="name">Nombre:</label>
-    <input type="text" id="name" name="name"><br><br>
+    <label for="name" >Nombre:</label>
+    <input type="text" id="name" name="name" value=${name}><br><br>
 
-    <label for="description">Descripción:</label>
-    <textarea id="description" name="description"></textarea><br><br>
+    <label for="description" >Descripción:</label>
+    <textarea id="description" name="description" >${description}</textarea><br><br>
 
-    <label for="image">Imagen:</label>
-    <input type="url" id="image" name="image"><br><br>
+    <label for="image" >Imagen:</label>
+    <input type="url" id="image" name="image" value=${image}><br><br>
 
     <label for="category">Categoría:</label>
-    <select id="category" name="category">
+    <select id="category" name="category" >
         <option >Acccesorios</option>
         <option >Camisetas</option>
          <option >Pantalones</option>
          <option >Zapatos</option>
+         <option selected disable hidden>${category}</option>
+
+         
          
 
     </select><br><br>
     
 
     <label for="size">Talla:</label>
-    <select  id="size" name="size">
+    <select  id="size" name="size" >
         <option >XS</option>
         <option >S</option>
          <option >M</option>
          <option >L</option>
          <option >XL</option>
+         <option selected disable hidden>${size}</option>
+         
+         
     </select><br><br>
 
 
     <label for="price">Precio:</label>
-    <input type="number" id="price" name="price" step="any"><br><br>
+    <input type="number" id="price" name="price" step="any" value=${Number(price)}><br><br>
 
     
     <input type="submit" value="Submit">

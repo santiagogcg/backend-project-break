@@ -101,7 +101,7 @@ router.get('/dashboard/:id', async (req, res) => {
 
         if (id === 'new') {
 
-            res.send(formProduct('/dashboard'));
+            res.send(formProduct('/dashboard', "", "", "", "", "", ""));
 
         } else {
             const productID = await product.findById(id);
@@ -131,8 +131,9 @@ router.get('/dashboard/:id/edit', async (req, res) => {
     try {
 
         const { id } = req.params;
-        res.send(formProduct(`/dashboard/${id}`));
-        console.log(req.params)
+        const productID = await product.findById(id);
+        res.send(formProduct(`/dashboard/${id}`, `${productID.name}`, `${productID.description}`, `${productID.image}`, `${productID.category}`, `${productID.size}`, `${productID.price}`));
+        console.log(productID)
 
     } catch (error) {
         console.error(error);
