@@ -18,7 +18,7 @@ const navHtmlUser = `<!DOCTYPE html>
     <li><a href="/products/Camisetas">Camisetas</a></li>
     <li><a href="/products/Pantalones">Pantalones</a></li>
     <li><a href="/products/Zapatos">Zapatos</a></li>
-    <li><a href="#">Log in</a></li>
+    <li><a href="/LogIn">Log in</a></li>
     </ul>
     </nav>`
 
@@ -42,7 +42,7 @@ const navHtmlAdmin = `<!DOCTYPE html>
     <li><a href="/products/Camisetas">Camisetas</a></li>
     <li><a href="/products/Pantalones">Pantalones</a></li>
     <li><a href="/products/Zapatos">Zapatos</a></li>
-    <li><a href="#">Log in</a></li>
+    <li><a href="/LogIn">Log in</a></li>
     <li><a href="/dashboard/new"><mark>Añadir NUEVO producto</mark></a></li>
     </ul>
     </nav>`
@@ -213,7 +213,6 @@ function formProduct(url, name, description, image, category, size, price) {
 `)
 
 };
-
 
 
 

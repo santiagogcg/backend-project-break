@@ -177,8 +177,8 @@ router.post('/dashboard/:id', async (req, res) => {
 router.post('/dashboard', async (req, res) => {
     try {
 
-
         const NewProduct = await product.create(req.body);
+
         res.status(200).redirect("/dashboard")
 
 
@@ -189,6 +189,12 @@ router.post('/dashboard', async (req, res) => {
         console.log(`${error.name}:${error.message}`)
     }
 });
+
+
+
+
+
+
 
 
 module.exports = { router }
