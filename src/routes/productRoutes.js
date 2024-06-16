@@ -10,6 +10,7 @@ router.get('/products', async (req, res) => {
     try {
 
 
+
         const products = await product.find();
         const productList = showProductUser(products);
 
@@ -32,17 +33,19 @@ router.get('/products', async (req, res) => {
 
 router.get('/dashboard/', async (req, res) => {
     try {
-        const products = await product.find();
-        const productList = showProductAdmin(products);
 
-        final = navHtmlAdmin + mainInitialHtlm + productList + mainFinalHtlm + footerHtml
-        res.send(final);
+        if (req.session.payLoadVerify) {
 
+            const products = await product.find();
+            const productList = showProductAdmin(products);
 
+            final = navHtmlAdmin + mainInitialHtlm + productList + mainFinalHtlm + footerHtml
+            res.send(final);
 
+        } else {
 
-
-
+            res.redirect('/login')
+        }
     } catch (error) {
         console.error(error);
         res.status(500).send({ message: "There was a problem trying to link to admin dashboard" });
@@ -97,24 +100,36 @@ router.get('/products/:id', async (req, res) => {
 
 router.get('/dashboard/:id', async (req, res) => {
     try {
-        const { id } = req.params;
 
-        if (id === 'new') {
+        if (req.session.payLoadVerify) {
+            const { id } = req.params;
 
-            res.send(formProduct('/dashboard', "", "", "", "", "", ""));
+            if (id === 'new') {
+
+                res.send(formProduct('/dashboard', "", "", "", "", "", ""));
+
+
+            } else {
+                const productID = await product.findById(id);
+
+                const productList = showProductByIdAdmin(productID);
+
+                const final = navHtmlAdmin + mainInitialHtlm + productList + mainFinalHtlm + footerHtml
+
+                res.send(final);
+
+
+                console.log(productID);
+            }
+
 
         } else {
-            const productID = await product.findById(id);
-
-            const productList = showProductByIdAdmin(productID);
-
-            const final = navHtmlAdmin + mainInitialHtlm + productList + mainFinalHtlm + footerHtml
-
-            res.send(final);
-
-
-            console.log(productID);
+            res.redirect('/login')
         }
+
+
+
+
 
     } catch (error) {
         res.status(500).send({ message: "Task not found as ID does not exist" })

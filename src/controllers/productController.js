@@ -42,7 +42,9 @@ const navHtmlAdmin = `<!DOCTYPE html>
     <li><a href="/products/Camisetas">Camisetas</a></li>
     <li><a href="/products/Pantalones">Pantalones</a></li>
     <li><a href="/products/Zapatos">Zapatos</a></li>
-    <li><a href="/LogIn">Log in</a></li>
+    <li><form action="/logout" method="post">
+        <button type="submit">Cerrar sesión</button> 
+      </form></li>
     <li><a href="/dashboard/new"><mark>Añadir NUEVO producto</mark></a></li>
     </ul>
     </nav>`

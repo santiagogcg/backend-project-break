@@ -19,14 +19,14 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static('../public'))
 
-// app.use(
-//     session({
-//         secret: hashedSecret,
-//         resave: false,
-//         saveUninitialized: true,
-//         cookie: { secure: false },
-//     })
-// );
+app.use(
+    session({
+        secret: "hashedSecret",
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: false },
+    })
+);
 
 
 app.use('/', router, routerUser);
